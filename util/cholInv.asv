@@ -5,11 +5,7 @@ function invK = cholInv(K)
 %
 % Output: - invK - the inverse of K
 
-% Check K is square
-dim = size(K);
-if dim(1) ~= dim(2)
-    error('K must be a square matrix')
-end
+
 
 try
     % Try to find the Cholesky factor of K
