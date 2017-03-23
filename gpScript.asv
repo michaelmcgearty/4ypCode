@@ -6,7 +6,7 @@ clear all; close all;
 %% Specification of task from user
 
 % Specify the type of mean and covariance functions being used
-type = struct('Mean',{'meanZeros'},'Cov',{'covSum','covPer','covSEard'});
+type = struct('Mean',{'meanZeros'},'Cov',{'CovProd','covSEard'});
 
 %Specify the variable of interest and the input variables
 %varOut = 'varaible of interest goes here';
@@ -30,9 +30,9 @@ funcTol = 1e-1;
 xd = linspace(0.1,8,80)';
 dimX = size(xd);
 D = dimX(2);
-fd = 10*sin(xd);
+fd = 5*xd - xd.^2 + 10*sin(xd);
 yd = fd + diag(3*randn(D));
-x_ = linspace(8.1,20,120)';
+x_ = linspace(8.1,10,20)';
 
 
 % Initialise the hyper parameters based on type.Mean and type.Cov

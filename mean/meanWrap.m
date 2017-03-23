@@ -9,18 +9,20 @@ function mu = meanWrap(type, hypMean, yd)
 %
 % Output: - mu - the mean function in an N * 1 vector
 
+% Extract string from structure
+typeMean = type.Mean;
 
 % Zero mean
-if type.Mean == 'meanZeros'
-    meanZeros = str2func(type.Mean);
+if strcmp(typeMean, 'meanZeros')
+    meanZeros = str2func(typeMean);
     mu = meanZeros(yd); 
 % Constant mean
-elseif type.Mean == 'meanConst'
-    meanConst = str2func(type.Mean);
+elseif strcmp(typeMean, 'meanConst')
+    meanConst = str2func(typeMean);
     mu = meanConst(hypMean, yd);
 % Arithmetic mean
-elseif type.Mean == 'meanArith'
-    meanArith = str2func(type.Mean);
+elseif strcmp(typeMean, 'meanArith')
+    meanArith = str2func(typeMean);
     mu = meanArith(yd);
 % Report errors
 else

@@ -18,7 +18,9 @@ function [f_, f_Var] = gpReg(type, theta, xd, yd, x_)
 %            n * 1 vector
 
 % Assign hyper parameters from theta
-if type.Mean == 'meanConst'
+% Extract string from structure
+typeMean = type.Mean;
+if strcmp(typeMean, 'meanConst')
     hypMean = theta(1);
     sigmaN = exp(theta(2));
     hypCov = theta(3:end);
@@ -28,18 +30,17 @@ else
     hypCov = theta(2:end);
 end
 
-
 % Compute the mean function for the training data
-xdMu = meanWrap(type.Mean, hypMean, yd);
+xdMu = meanWrap(type, hypMean, yd);
 % Compute the mean function at the test points
 dimx_ = size(x_);
 x_Mu = xdMu(1) * ones(dimx_(1),1);
 % Compute the covariance functions necessary later
-K__ = covWrap(type(1).Cov, hypCov, x_, x_);
+K__ = covWrap(type, hypCov, x_, x_);
 % Kd_ = covWrap(typeCov, hypCov, xd, x_);
-K_d = covWrap(type(1).Cov, hypCov, x_, xd);
+K_d = covWrap(type, hypCov, x_, xd);
 Kd_ = K_d';
-Kdd = covWrap(type(1).Cov, hypCov, xd, xd);
+Kdd = covWrap(type, hypCov, xd, xd);
 % Generate the noise matrix
 noise = sigmaN^2 * eye(size(Kdd));
 % Calculate the inverse of Kdd + noise using Cholskey decomposition
