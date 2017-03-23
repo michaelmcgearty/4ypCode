@@ -1,12 +1,11 @@
 %% Clear Matlab before running
-
 % Close all figures and clear all variables from the workspace
 clear all; close all;
 
 %% Specification of task from user
 
 % Specify the type of mean and covariance functions being used
-type = struct('Mean',{'meanZeros'},'Cov',{'covSum','covPer','covSEard'});
+type = struct('Mean',{'meanConst'},'Cov',{'covSum','covPer','covSEard'});
 
 %Specify the variable of interest and the input variables
 %varOut = 'varaible of interest goes here';
@@ -18,7 +17,7 @@ UB = 10;
 
 % Specify the maximum number of iterations and function tolerance for
 % optimisation
-maxIter = 500;
+maxIter = 2000;
 funcTol = 1e-1;
 
 %% Load data and initialise variables
@@ -27,12 +26,11 @@ funcTol = 1e-1;
 %[xd, yd, x_] = loadData(varOut, varIn);
 
 %Test
-xd = linspace(0.1,8,80)';
+xd = linspace(0.1,8,20)';
 dimX = size(xd);
 D = dimX(2);
-fd = 10*sin(xd);
-yd = fd + diag(3*randn(D));
-x_ = linspace(8.1,20,120)';
+yd = 10*sin(xd)+ones(size(xd));
+x_ = linspace(8.1,20,30)';
 
 
 % Initialise the hyper parameters based on type.Mean and type.Cov

@@ -8,7 +8,7 @@ function mu = meanConst(hypMean, yd)
 % Output: - mu - the mean function in an N * 1 vector
 
 % Check hypMean has only one parameter
-if numel(hypeMean) ~= 1
+if numel(hypMean) ~= 1
     error('hypMean should only contain a single parameter')
 end
 

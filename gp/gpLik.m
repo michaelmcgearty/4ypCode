@@ -1,12 +1,9 @@
 function nLogLik = gpLik(type, theta, xd, yd)
 % gpLik: Computes the negative log likelihood of the GP
 %
-% Inputs: - typeMean - string specifying the type of mean function to be
-%           used
-%         - typeCov - string specifying the type of covariance function or 
+% Inputs: - type - structure specifying the type of mean and covariance 
 %           functions to be used
-%         - hypMean - the hyper parameters for the mean function
-%         - hypCov - the hyperparameters for the covariance function
+%         - theta - the hyper parameters
 %         - xd - N, D-dimensional training inputs in an N * D matrix
 %         - yd - N training outputs corresponding to the N training inputs
 %           in an N * 1 vector
@@ -16,9 +13,7 @@ function nLogLik = gpLik(type, theta, xd, yd)
 
 % Assign hyper parameters from theta
 sigmaN = exp(theta(1));
-% Extract string from structure
-typeMean = type.Mean;
-if strcmp(typeMean, 'meanConst')
+if strcmp(type(1).Mean, 'meanConst')
     hypMean = theta(2);
     hypCov = theta(3:end);
 else
