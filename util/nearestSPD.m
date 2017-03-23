@@ -60,8 +60,3 @@ while p ~= 0
 end
 
 end
-
-
-
-
-

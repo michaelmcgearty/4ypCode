@@ -52,10 +52,3 @@ f_ = x_Mu + K_d * invKddPlusNoise * (yd - xdMu);
 f_Var = diag(K__ - K_d * invKddPlusNoise * Kd_);
 
 end
-
-
-
-
-
-
-

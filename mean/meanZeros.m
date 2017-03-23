@@ -10,4 +10,3 @@ dim = size(yd);
 mu = zeros(dim);
 
 end
-

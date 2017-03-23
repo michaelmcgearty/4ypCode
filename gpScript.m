@@ -45,5 +45,3 @@ options = optimoptions(@simulannealbnd,'FunctionTolerance',1e-1,...
 % Generate a plot of data
 
 % Automatically save xd, yd, x_, f_, f_Var, type, thetaOpt and the graphs
-
-

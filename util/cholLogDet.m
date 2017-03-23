@@ -17,4 +17,3 @@ end
 logDetK = 2 * sum(log(diag(R)));
 
 end
-
