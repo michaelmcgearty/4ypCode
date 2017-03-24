@@ -1,11 +1,10 @@
-%% Clear Matlab before running
 % Close all figures and clear all variables from the workspace
 clear all; close all;
-
-%% Specification of task from user
+%==========================================================================
+% Specification of task from user
 
 % Specify the type of mean and covariance functions being used
-type = struct('Mean',{'meanConst'},'Cov',{'covSum','covPer','covSEard'});
+type = struct('Mean',{'meanZero'},'Cov',{'covSum','covPer','covSEard'});
 
 %Specify the variable of interest and the input variables
 %varOut = 'varaible of interest goes here';
@@ -20,7 +19,7 @@ UB = 10;
 maxIter = 2000;
 funcTol = 1e-1;
 
-%% Load data and initialise variables
+% Load data and initialise variables
 
 % Load the data from csv
 %[xd, yd, x_] = loadData(varOut, varIn);
@@ -32,27 +31,17 @@ D = dimX(2);
 yd = 10*sin(xd)+ones(size(xd));
 x_ = linspace(8.1,20,30)';
 
-
 % Initialise the hyper parameters based on type.Mean and type.Cov
 thetaInit = hypInit(type, D, initVal);
 thetaLB = zeros(size(thetaInit));
 thetaUB = UB * ones(size(thetaInit)); 
 
-%% Optimisation
+% Optimisation
 
 % Opimise the hyper parameters by minimising the negative log likelihood
 % using the simulated annealing algorithm
 [thetaOpt, nLogLikMin, exitFlag, output] = optSimAn(type, xd, yd, ...
     thetaInit, thetaLB, thetaUB, maxIter, funcTol);
 
-%% Regression
 
-% Make predictions using the GP
-[f_, f_Var] = gpReg(type, thetaOpt, xd, yd, x_);
 
-%% Plotting and saving
-
-% Generate a plot of data
-plotWrtTime(xd, yd, thetaOpt, x_, f_, f_Var)
-
-% Automatically save xd, yd, x_, f_, f_Var, type, thetaOpt and the graphs

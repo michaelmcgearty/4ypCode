@@ -47,6 +47,7 @@ f_ConfSorted = f_Conf(x_Ind);
 confAllSorted = confAll(xAllInd);
 
 % Plot the function
+figure
 plot(xAllSorted, fAllSorted, 'Color', 'k')
 hold on
 % Add markers at training data point
