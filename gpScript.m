@@ -26,7 +26,7 @@ funcTol = 1e-1;
 %[xd, yd, x_] = loadData(varOut, varIn);
 
 %Test
-xd = linspace(0.1,8,20)';
+xd = linspace(0.1,8,200)';
 dimX = size(xd);
 D = dimX(2);
 yd = 10*sin(xd)+ones(size(xd));

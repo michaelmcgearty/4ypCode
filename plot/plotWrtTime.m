@@ -52,6 +52,9 @@ plot(xdSorted, ydSorted, 'LineStyle', 'none', 'Marker', 'o', ...
 % Add markers at predictions
 plot(x_Sorted, f_Sorted, 'LineStyle', 'none', 'Marker', 'o', ...
     'MarkerFaceColor', 'r','MarkerSize',4)
+% Add error bars
+errorbar(xAllSorted,fAllSorted,confAllSorted)
+
 % Shade the 95% confidence interval
 
 % Order the different layers
