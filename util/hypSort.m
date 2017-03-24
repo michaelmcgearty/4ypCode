@@ -2,8 +2,8 @@ function [hyp1, hyp2] = hypSort(type, hypCov, dim)
 
 % Organise the hyper parameters
 if strcmp(type(2).Cov, 'covLin')
-    hyp1 = hypCov(1:2);
-    hyp2 = hypCov(3:end);
+    hyp1 = hypCov(1:(dim(2)+1));
+    hyp2 = hypCov((dim(2)+2):end);
 elseif strcmp(type(2).Cov, 'covMatern12')
     hyp1 = hypCov(1:2);
     hyp2 = hypCov(3:end);

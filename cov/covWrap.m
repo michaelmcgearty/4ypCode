@@ -50,9 +50,11 @@ if isstruct(type)
     elseif strcmp(type(1).Cov, 'covPer')
         covPer = str2func(type(1).Cov);
         K = covPer(hypCov, x1, x2);
+    % Sum of covariance functions 
     elseif strcmp(type(1).Cov, 'covSum')
         covSum = str2func(type(1).Cov);
         K = covSum(type, hypCov, x1, x2);
+    % Product of covariance functions
     elseif strcmp(type(1).Cov, 'covProd')
         covProd = str2func(type(1).Cov);
         K = covProd(type, hypCov, x1, x2);

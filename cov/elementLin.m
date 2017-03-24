@@ -8,10 +8,15 @@ function Kij = elementLin(x1, x2, c, sigma)
 %
 % Output: - Kij - an element in the linear covariance matrix
 
-% Ensure c is correctly oriented
+% Ensure c is the correct size and orientation
 cDim = size(c);
-if cDim(1) > cDim(2)
+xDim = size(x1);
+if cDim ~= xDim
     c = c';
+    cDim = size(c);
+    if cDim ~=xDim
+        error('c must have the same dimensions as x')
+    end
 end
 
 % Calculate the element in RQ covariance matrix
