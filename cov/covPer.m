@@ -1,9 +1,9 @@
 function Kxx = covPer(hypCov, x1, x2)
 % covPer: Calculates the covariance matrix for a periodic covariance
-% function
+%         function
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l,
-%           rho and sigma, hypCov = [l, rho, sigma]
+%           rho and sigma, hypCov = ln([l, rho, sigma])
 %         - x1 - n1, D-dimensional points in an n1 * D matrix
 %         - x2 - n2, D-dimensional points in an n2 * D matrix
 %
@@ -21,7 +21,7 @@ n2 = size(x2);
 % Check x1 and x2 are sets of n 1-D vectors - use of this covariance
 % function only makes sense for 1-D inputs
 if n1(2) ~= 1 || n2(2) ~= 1
-    error('Use of this covariance function only makes sense for 1-D inputs')
+    error('Use of covPer only makes sense for 1-D inputs')
 end
 
 % Initialise covariance matrix

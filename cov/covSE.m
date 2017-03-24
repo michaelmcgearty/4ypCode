@@ -2,7 +2,7 @@ function Kxx = covSE(hypCov, x1, x2)
 % covSE: Calculates the squared exponential covariance matrix
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l and
-%           sigma, hypCov = [l, sigma]
+%           sigma, hypCov = ln([l, sigma])
 %         - x1 - n1, D-dimensional points in an n1 * D matrix
 %         - x2 - n2, D-dimensional points in an n2 * D matrix
 %

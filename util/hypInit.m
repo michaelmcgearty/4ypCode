@@ -1,4 +1,16 @@
 function thetaInit = hypInit(type, D, initVal)
+% thetaInit: Initialises a vector of the correct length containing the 
+%            natural logs of the hyper parameters for the GP model based on
+%            the type of mean and covariance being used
+% 
+% Inputs: - type - a struct containing information on the type of mean and
+%           covariance functions to be used
+%         - D - the number of dimensions in the input space
+%         - initVal - the initial value of the elements in theta, at which
+%           optimization starts
+%
+% Output - thetaInit - a vector containing the natural logs of the hyper 
+%          parameters
 
 % Always a single hyper parameter from sigmaN
 count = 1;

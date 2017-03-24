@@ -1,6 +1,19 @@
 % Wrapper function used to select the correct covariance function
 function K = covWrap(type, hypCov, x1, x2)
+% covWrap: A wrapper function used to call the required covariance
+%          functions as specified by type
+% Inputs: - type - a structure or string specifying the type of covariance
+%           functon to be called
+%         - hypCov - a vector containing the hyper parameters for the
+%           covariance functon(s)
+%         - x1 - an n1 * D matrix containing the input vector on which
+%           to evaluate the covarience function
+%         - x2 - an n2 * D matrix containing the input vector on which
+%           to evaluate the covarience function
+%
+% Output: - K - the covariance matrix
 
+% If single covariance function used, type will be a struct
 if isstruct(type)
     % Rational quadratic covariance
     if strcmp(type(1).Cov, 'covRQ')
@@ -61,6 +74,7 @@ if isstruct(type)
     else
         error('type(1).Cov must be a valid covariance')
     end
+% If covSum or covProd is used then type will be a string on the second pass    
 elseif ischar(type)
     % Rational quadratic covariance
     if strcmp(type,'covRQ')

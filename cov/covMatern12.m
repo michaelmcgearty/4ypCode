@@ -2,7 +2,7 @@ function Kxx = covMatern12(hypCov, x1, x2)
 % covMatern12: Calculates the Matern covariance matrix (v = 1/2)
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l
-%           and sigma, hypCov = [l, sigma]
+%           and sigma, hypCov = ln([l, sigma])
 %         - x1 - n1, D-dimensional points in an n1 * D matrix
 %         - x2 - n2, D-dimensional points in an n2 * D matrix
 %

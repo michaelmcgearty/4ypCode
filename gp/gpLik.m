@@ -12,14 +12,7 @@ function nLogLik = gpLik(type, theta, xd, yd)
 % Output: - nLogLik - the the negative log likelihood of the GP
 
 % Assign hyper parameters from theta
-sigmaN = exp(theta(1));
-if strcmp(type(1).Mean, 'meanConst')
-    hypMean = theta(2);
-    hypCov = theta(3:end);
-else
-    hypMean = 0;
-    hypCov = theta(2:end);
-end
+[sigmaN, hypMean, hypCov] = hypAssign(type, theta);
 
 % Mean for training data
 xdMu = meanWrap(type, hypMean, yd);

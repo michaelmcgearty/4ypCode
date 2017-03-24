@@ -1,6 +1,6 @@
 function Kxx = covProd(type, hypCov, x1, x2)
-% covProd: Calculates the covariance matrix for the product of two covariance
-% functions
+% covProd: Calculates the covariance matrix for the product of covariance
+%          functions
 %
 % Inputs: - type - a structure containing the types of covariance functions
 %           being combined

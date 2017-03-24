@@ -1,11 +1,5 @@
 function hypNum = hypNumber(type, D)
-% hypNumber: Returns the number of hyper parameters required by a given
-%            covariance function
-%
-% Inputs: - type - a string containing the name of a covariance function
-%         - D - the number of dimensions in the input space
-%
-% Output: - hypNum - the number of hyper parameters required
+% hypNumber: Returns the number of hyper parameters require
 
 if strcmp(type,'covRQ') || strcmp(type,'covPer')
     hypNum = 3;

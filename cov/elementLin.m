@@ -20,6 +20,6 @@ if cDim ~= xDim
 end
 
 % Calculate the element in RQ covariance matrix
-Kij = sigma^2 * (x1 - c) * (x2 - c)';
+Kij = sigma^2 * ((x1 - c) * (x2 - c)');
 
 end

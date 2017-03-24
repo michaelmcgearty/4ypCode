@@ -24,11 +24,8 @@ lossFunc = @(theta)gpLik(type, theta, xd, yd);
 
 % Specify additional settings
 options = optimoptions(@simulannealbnd,'FunctionTolerance',funcTol,...
-    'MaxIterations',maxIter);
-
-% Extra plotting settings that might be usedful for debugging (can be
-% included in the options structure
-% 'PlotFcn',{@saplotbestx,@saplotbestf,@saplotx,@saplotf}
+    'MaxIterations',maxIter,'PlotFcn',...
+    {@saplotbestx,@saplotbestf,@saplotx,@saplotf});
 
 %Calculate the optimal hyper parameter values
 [thetaOpt, nLogLikMin, exitFlag, output] = simulannealbnd(lossFunc,...

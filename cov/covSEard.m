@@ -3,8 +3,8 @@ function Kxx = covSEard(hypCov, x1, x2)
 %           automatic relevance detection
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l and
-%           sigma, hypCov = [l, sigma], l is a vector of length D, sigma is
-%           a scalar
+%           sigma, hypCov = ln([l, sigma]), l is a vector of length D,
+%           sigma is a scalar
 %         - x1 - n1, D-dimensional points in an n1 * D matrix
 %         - x2 - n2, D-dimensional points in an n2 * D matrix
 %

@@ -1,34 +1,21 @@
 function [f_, f_Var] = gpReg(type, theta, xd, yd, x_)
 % gpPred: Makes predictions at test points using GP regression
 %  
-% Inputs: - typeMean - string specifying the type of mean function to be
-%           used
-%         - typeCov - string specifying the type of covariance function or 
-%           functions to be used
-%         - hypMean - the hyper parameters for the mean function
-%         - hypCov - the hyperparameters for the covariance function
+% Inputs: - type - a struct containing informaton about which mean and
+%           covariance functions should be called
+%         - theta - a vector containing the natural log of the hyper
+%           parameters 
 %         - xd - N, D-dimensional training inputs in an N * D matrix
 %         - yd - N training outputs corresponding to the N training inputs
 %           in an N * 1 vector
 %         - x_ - n, D-dimensional test inputs in an n * D Matrix
-%         - sigmaN - parameter specifying the additive noise
 %
-% Outputs: - f_ - the GP mean at each of the test points in an n * 1 vector
+% Outputs: - f_ - the GP mean at each of the test inputs in an n * 1 vector
 %          - f_Var - the GP variance at each of the test points in an 
 %            n * 1 vector
 
 % Assign hyper parameters from theta
-% Extract string from structure
-typeMean = type.Mean;
-if strcmp(typeMean, 'meanConst')
-    hypMean = theta(1);
-    sigmaN = exp(theta(2));
-    hypCov = theta(3:end);
-else
-    hypMean = 0;
-    sigmaN = exp(theta(1));
-    hypCov = theta(2:end);
-end
+[sigmaN, hypMean, hypCov] = hypAssign(type, theta); 
 
 % Compute the mean function for the training data
 xdMu = meanWrap(type, hypMean, yd);

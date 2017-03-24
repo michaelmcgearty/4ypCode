@@ -2,8 +2,8 @@ function Kxx = covLin(hypCov, x1, x2)
 % covLin: Calculates the covariance matrix for a linear covariance function
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, c and
-%           sigma, hypCov = [c, sigma], c is an vector length D, sigma is a
-%           scalar
+%           sigma, hypCov = ln([c, sigma]), c is an vector length D, sigma 
+%           is a scalar
 %         - x1 - n1, D-dimensional points in an n1 * D matrix
 %         - x2 - n2, D-dimensional points in an n2 * D matrix
 %

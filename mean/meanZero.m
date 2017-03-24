@@ -1,4 +1,4 @@
-function mu = meanZeros(yd)
+function mu = meanZero(yd)
 % meanZeros: Zero mean function
 %
 % Inputs: - yd - N training outputs corresponding to the N training inputs

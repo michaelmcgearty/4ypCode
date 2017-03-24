@@ -3,8 +3,8 @@ function Kxx = covRQard(hypCov, x1, x2)
 %           automatic relevance detection 
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, alpha
-%           and l, hypCov = [alpha, l, sigma], alpha and sigma are scalars,
-%           l is a vector of length D
+%           and l, hypCov = ln([alpha, l, sigma]), alpha and sigma are 
+%           scalars, l is a vector of length D
 %         - x1 - n1, D-dimensional points in an n1 * D matrix
 %         - x2 - n2, D-dimensional points in an n2 * D matrix
 %

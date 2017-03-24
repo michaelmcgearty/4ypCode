@@ -1,4 +1,17 @@
 function [hyp1, hyp2] = hypSort(type, hypCov, dim)
+% hypSort: Used by covSum and covProd to divide the hyper parameters passed
+%          to them between the additional covariance functions they call
+%
+% Inputs: - type - a struct containing information about the types of 
+%           covariance functions being called 
+%         - hypCov - a vector containing the natural logs of the hyper
+%           parameters for both covaraince functions
+%         - dim - the dimensions of the input x
+%
+% Outputs - hyp1 - a vector containing the natural logs of the hyper
+%           parameters for the first covaraince function
+%         - hyp1 - a vector containing the natural logs of the hyper
+%           parameters for the second covaraince function
 
 % Organise the hyper parameters
 if strcmp(type(2).Cov, 'covLin')

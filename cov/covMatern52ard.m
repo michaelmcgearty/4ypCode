@@ -3,7 +3,7 @@ function Kxx = covMatern52ard(hypCov, x1, x2)
 %                 relevance detection (v = 5/2)
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l
-%           and sigma, hypCov = [l, sigma], l is a vector of length D,
+%           and sigma, hypCov = ln([l, sigma]), l is a vector of length D,
 %           sigma is a scalar
 %         - x1 - n1, D-dimensional points in an n1 * D matrix
 %         - x2 - n2, D-dimensional points in an n2 * D matrix

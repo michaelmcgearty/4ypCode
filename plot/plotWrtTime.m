@@ -2,12 +2,15 @@ function plotWrtTime(xd, yd, thetaOpt, x_, f_, f_Var)
 % plotWrtTime: Plots the data with respect to time showing predictive
 %              uncertainies
 %
-% Inputs: - xd 
-%         - yd 
-%         - thetaOpt
-%         - x_
-%         - f_
-%         - f_Var
+% Inputs: - xd - the training inputs in an N * D matrix
+%         - yd - the training targets in an N * 1 vector
+%         - thetaOpt - a vector containing the optimal hyper parameter
+%           values
+%         - x_ - the test targets in an n * D matrix
+%         - f_ - the predicted values of the test targets in an n * 1
+%           vector
+%         - f_Var - the variance on the predictions at each of the test
+%           targets in an n * 1 vector
 %
 % Figures: a graph showing the variable of interest with respect to time, 
 %          including information about the predictive uncertainty
