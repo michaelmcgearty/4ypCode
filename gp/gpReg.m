@@ -29,7 +29,7 @@ K_d = covWrap(type, hypCov, x_, xd);
 Kd_ = K_d';
 Kdd = covWrap(type, hypCov, xd, xd);
 % Generate the noise matrix
-noise = sigmaN^2 * eye(size(Kdd));
+noise = exp(2*sigmaN) * eye(size(Kdd));
 % Calculate the inverse of Kdd + noise using Cholskey decomposition
 invKddPlusNoise = cholInv(Kdd + noise);
 

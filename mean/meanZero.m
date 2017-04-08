@@ -6,7 +6,6 @@ function mu = meanZero(yd)
 %
 % Output: - mu - the mean function in an N * 1 vector
 
-dim = size(yd);
-mu = zeros(dim);
+mu = zeros(size(yd));
 
 end

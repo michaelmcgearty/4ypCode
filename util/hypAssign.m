@@ -6,14 +6,14 @@ function [sigmaN, hypMean, hypCov] = hypAssign(type, theta)
 %           and covariance function being used
 %         - theta - a vector containing all of the hyper parameter values
 %
-% Outputs - sigmaN - the variance of the measurement noise
+% Outputs - sigmaN - the natural log of the standard deviation of the 
+%           measurement noise
 %         - hypMean - the natural log of the hyper parameter for the mean 
 %           function
 %         - hypCov - a vector containing the natural logs of the hyper
 %           parameters for the covariance functions
 
-
-sigmaN = exp(theta(1));
+sigmaN = theta(1);
 if strcmp(type(1).Mean, 'meanConst')
     hypMean = theta(2);
     hypCov = theta(3:end);

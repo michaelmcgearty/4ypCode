@@ -7,7 +7,6 @@ function nLogLik = gpLik(type, theta, xd, yd)
 %         - xd - N, D-dimensional training inputs in an N * D matrix
 %         - yd - N training outputs corresponding to the N training inputs
 %           in an N * 1 vector
-%         - sigmaN - parameter specifying the additive noise
 %
 % Output: - nLogLik - the the negative log likelihood of the GP
 
@@ -19,16 +18,17 @@ xdMu = meanWrap(type, hypMean, yd);
 % Covariance matrix for training data
 Kdd = covWrap(type, hypCov, xd, xd);
 % Generate the noise matrix
-noise = sigmaN^2 * eye(size(Kdd));
+noise = exp(2*sigmaN) * eye(size(Kdd));
+% Add Kdd to the noise covariance
+KddPlusNoise = Kdd + noise;
 % Calculate the inverse of Kdd + noise using Cholskey decomposition
-invKddPlusNoise = cholInv(Kdd + noise);
+invKddPlusNoise = cholInv(KddPlusNoise);
 % The natural logaritm of the determinant of Kdd plus the noise matrix
 logDetKddPlusNoise = cholLogDet(Kdd + noise);
 % Number of data ponts in training set
 N = numel(yd);
-
 % Compute the negative log likelihood for the training data 
-nLogLik = 0.5 * (yd - xdMu)' * invKddPlusNoise * (yd - xdMu) + 0.5 * ...
+nLogLik = 0.5 * (yd - xdMu)' * invKddPlusNoise * (yd - xdMu) +...
     0.5 * logDetKddPlusNoise + 0.5 * N * log(2 * pi);
 
 end

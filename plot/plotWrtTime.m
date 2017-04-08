@@ -1,11 +1,10 @@
-function plotWrtTime(xd, yd, thetaOpt, x_, f_, f_Var)
+function plotWrtTime(xd, yd, theta, x_, f_, f_Var)
 % plotWrtTime: Plots the data with respect to time showing predictive
 %              uncertainies
 %
 % Inputs: - xd - the training inputs in an N * D matrix
 %         - yd - the training targets in an N * 1 vector
-%         - thetaOpt - a vector containing the optimal hyper parameter
-%           values
+%         - theta - the hyper parameters for the GP model
 %         - x_ - the test targets in an n * D matrix
 %         - f_ - the predicted values of the test targets in an n * 1
 %           vector
@@ -24,7 +23,7 @@ x_Time = x_(:,1);
 
 % Generate vectors containing the variance for yd (f_'s varaince is given
 % by f_Var)
-ydVar = (exp(thetaOpt(1)))^2 * ones(size(xdTime));
+ydVar = exp(2*theta(1)) * ones(size(xdTime));
 
 % Generate vectors containing the confidence intervals for yd and f_
 ydConf = confInt95 * sqrt(ydVar);
@@ -57,7 +56,8 @@ plot(xdSorted, ydSorted, 'LineStyle', 'none', 'Marker', 'o', ...
 plot(x_Sorted, f_Sorted, 'LineStyle', 'none', 'Marker', 'o', ...
     'MarkerFaceColor', 'r','MarkerSize',4)
 % Add error bars
-errorbar(xAllSorted,fAllSorted,confAllSorted)
+errorbar(xdSorted, ydSorted,ydConfSorted)
+errorbar(x_Sorted, f_Sorted,f_ConfSorted )
 
 % Shade the 95% confidence interval
 

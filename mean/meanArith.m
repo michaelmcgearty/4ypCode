@@ -6,8 +6,7 @@ function mu = meanArith(yd)
 %
 % Output: - mu - the mean function in an N * 1 vector
 
-dim = size(yd);
-av = sum(yd) / dim(1);
-mu = av * ones(dim);
+av = sum(yd) / length(yd);
+mu = av * ones(size(yd));
 
 end
