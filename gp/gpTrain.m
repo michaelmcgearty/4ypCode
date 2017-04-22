@@ -1,4 +1,4 @@
-function [thetaOpt, nLogLikMin] = gpTrain(xd, yd, type, opt)
+function [thetaOpt, nLogLikMin] = gpTrain(xd, yd, type, opt, theta)
 % gp: Initialises the GPs hyper-parameters and optimizes them through
 %     minimising the negative log likelhood using the simmulated annealing 
 %     algorithm 
@@ -11,6 +11,8 @@ function [thetaOpt, nLogLikMin] = gpTrain(xd, yd, type, opt)
 %          and covariance functions to be used [Mean, Cov]
 %        - opt - a vector containing settings used by the optimization
 %          algorithm [initVal, LB, UB, maxIter, funcTol]
+%        - theta - the previous optimal value of theta, or NaN if no such
+%          previous value exists
 % 
 % Outputs: - thetaOpt - a vector containing the natural logs of the optimal
 %            hyper parameter values
@@ -19,7 +21,11 @@ function [thetaOpt, nLogLikMin] = gpTrain(xd, yd, type, opt)
 % Initialise the hyper parameters based on type.Mean and type.Cov
 dimX = size(xd);
 D = dimX(2);
-thetaInit = hypInit(type, D, opt(1));
+if isnan(theta)
+    thetaInit = hypInit(type, D, opt(1));
+else
+    thetaInit = theta;
+end
 thetaLB = opt(2) * ones(size(thetaInit));
 thetaUB = opt(3) * ones(size(thetaInit)); 
 
