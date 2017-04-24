@@ -24,8 +24,8 @@ end
 % Specify the number of training points used to initially optimise the hyper
 % parameters, the number of test points to predict into the future and the
 % number of predictions per hour to plot
-trainingPoints = 10;
-testPoints = 10;
+trainingPoints = 1;
+testPoints = 1255;
 predPerHour = 4*60;
 
 % Initialise xd, yd and x_, ready for the first prediction
@@ -60,13 +60,14 @@ timePred(1:length(x_)) = x_;
 % Specify the GP structure and optimisation options
 type = struct('Mean',{'meanConst'},'Cov',{'covMatern52'});
 opt = [1, -4, 6, 4000, 0.03];
-theta = NaN;
+%theta = NaN;
+load('thetaOptCovMatern52AirTemp');
 
 % Simulate the data as a time series
-[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
+%[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
 ind = 0;
-thetaHistory = zeros(testPoints,length(thetaOpt)); 
-thetaHistory(1,:) = thetaOpt;
+%thetaHistory = zeros(testPoints,length(thetaOpt)); 
+%thetaHistory(1,:) = thetaOpt;
 
 for i = 1:testPoints
     [f_New, f_VarNew] = gpReg(type, thetaOpt, xd, yd, x_);
@@ -77,7 +78,7 @@ for i = 1:testPoints
     if y(trainingPoints+i) ~= 0
         xd = [xd;time(trainingPoints+i)];
         yd = [yd;y(trainingPoints+i)];
-        [thetaOpt, ~] = gpTrain(xd, yd, type, opt, thetaOpt);
+        %[thetaOpt, ~] = gpTrain(xd, yd, type, opt, thetaOpt);
     end
     % Generate the next set of prediction points and store them in timePred
     if i ~= testPoints
@@ -87,7 +88,7 @@ for i = 1:testPoints
             predictionsPerInterval);
         x_ = x_Temp(2:end)';
         timePred((ind+1):(ind+length(x_))) = x_;
-        thetaHistory((i+1),:) = thetaOpt;
+        %thetaHistory((i+1),:) = thetaOpt;
     end
 end
 
@@ -98,4 +99,3 @@ end
 
 plotGP(xd,yd,thetaOpt,timePred,f_,f_Var,varInt)
 
-timePred60 = 60* timePred;

@@ -9,8 +9,8 @@ tideH = X(:,4);
 tideHTrue = X(:,9);
 
 % Specify variable of interest
-varInt = 'airTemp';
-% varInt = 'tideH'
+%varInt = 'airTemp';
+varInt = 'tideH';
 if strcmp(varInt,'airTemp')
     y = airTemp;
     truth = airTempTrue;
@@ -49,4 +49,54 @@ theta = NaN;
 % Optimise the hyper parameters
 [thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
 
-save('thetaOptCovSEAirTemp','thetaOpt')
+save('thetaOptCovSETideH','thetaOpt')
+
+% Specify the GP structure and optimisation options
+type = struct('Mean',{'meanConst'},'Cov',{'covRQ'});
+opt = [1, -4, 6, 10000, 0.00001];
+theta = NaN;
+
+% Optimise the hyper parameters
+[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
+
+save('thetaOptCovRQTideH','thetaOpt')
+
+% Specify the GP structure and optimisation options
+type = struct('Mean',{'meanConst'},'Cov',{'covMatern12'});
+opt = [1, -4, 6, 10000, 0.00001];
+theta = NaN;
+
+% Optimise the hyper parameters
+[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
+
+save('thetaOptCovMatern12TideH','thetaOpt')
+
+% Specify the GP structure and optimisation options
+type = struct('Mean',{'meanConst'},'Cov',{'covMatern32'});
+opt = [1, -4, 6, 10000, 0.00001];
+theta = NaN;
+
+% Optimise the hyper parameters
+[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
+
+save('thetaOptCovMatern32TideH','thetaOpt')
+
+% Specify the GP structure and optimisation options
+type = struct('Mean',{'meanConst'},'Cov',{'covMatern52'});
+opt = [1, -4, 6, 10000, 0.00001];
+theta = NaN;
+
+% Optimise the hyper parameters
+[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
+
+save('thetaOptCovMatern52TideH','thetaOpt')
+
+% Specify the GP structure and optimisation options
+type = struct('Mean',{'meanConst'},'Cov',{'covPer'});
+opt = [1, -4, 6, 10000, 0.00001];
+theta = NaN;
+
+% Optimise the hyper parameters
+[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
+
+save('thetaOptCovPerTideH','thetaOpt')
