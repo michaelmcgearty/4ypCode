@@ -29,17 +29,7 @@ xdUnclean = time(1:trainingPoints);
 ydUnclean = y(1:trainingPoints);
 
 % Clean training data
-missingDataSize = numel(find(ydUnclean==0));
-yd = zeros((length(ydUnclean)-missingDataSize),1);
-xd = zeros((length(xdUnclean)-missingDataSize),1);
-indClean = 1;
-for i = 1:trainingPoints
-    if ydUnclean(i) ~= 0
-        yd(indClean) = ydUnclean(i);
-        xd(indClean) = xdUnclean(i);
-        indClean = indClean + 1;
-    end
-end
+[xd, yd] = clean(xdUnclean, ydUnclean);
 
 % Specify the GP structure and optimisation options
 type = struct('Mean',{'meanConst'},'Cov',{'covSE'});

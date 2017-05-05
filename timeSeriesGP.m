@@ -24,8 +24,8 @@ end
 % Specify the number of training points used to initially optimise the hyper
 % parameters, the number of test points to predict into the future and the
 % number of predictions per hour to plot
-trainingPoints = 1;
-testPoints = 1255;
+trainingPoints = 101;
+testPoints = 1155;
 predPerHour = 4*60;
 
 % Initialise xd, yd and x_, ready for the first prediction
@@ -36,32 +36,23 @@ x_Temp = linspace(time(trainingPoints),time(trainingPoints+1),...
 x_ = x_Temp(2:end)';
 
 % Clean training data
-missingDataSize = numel(find(ydUnclean==0));
-yd = zeros((length(ydUnclean)-missingDataSize),1);
-xd = zeros((length(xdUnclean)-missingDataSize),1);
-indClean = 1;
-for i = 1:trainingPoints
-    if ydUnclean(i) ~= 0
-        yd(indClean) = ydUnclean(i);
-        xd(indClean) = xdUnclean(i);
-        indClean = indClean + 1;
-    end
-end
+[xd, yd] = clean(xdUnclean, ydUnclean);
 
 % Initialise f_, f_Var and timePred (the vector containing all values of x_
 % used throughout the entire simulation)
 numberPred = int16(1)*predPerHour*(time(trainingPoints+testPoints)-time(trainingPoints));
-f_ = zeros(numberPred,1); % fix these lengths
-f_Var = zeros(numberPred,1); %fix these lengths
-timePred = zeros(numberPred,1); %fix these lengths
+f_ = zeros(numberPred,1); 
+f_Var = zeros(numberPred,1); 
+timePred = zeros(numberPred,1); 
 timePred(1:length(x_)) = x_;
+f_Record = zeros(testPoints,1);
 
 
 % Specify the GP structure and optimisation options
-type = struct('Mean',{'meanConst'},'Cov',{'covMatern52'});
+type = struct('Mean',{'meanConst'},'Cov',{'covSE'});
 opt = [1, -4, 6, 4000, 0.03];
 %theta = NaN;
-load('thetaOptCovMatern52AirTemp');
+load('thetaOptCovSEAirTemp');
 
 % Simulate the data as a time series
 %[thetaOpt, ~] = gpTrain(xd, yd, type, opt, theta);
@@ -71,6 +62,7 @@ ind = 0;
 
 for i = 1:testPoints
     [f_New, f_VarNew] = gpReg(type, thetaOpt, xd, yd, x_);
+    f_Record(i) = f_New(end);
     f_((ind+1):(ind+length(f_New))) = f_New;
     f_Var((ind+1):(ind+length(f_New))) = f_VarNew;
     ind = ind + length(f_New);
@@ -99,3 +91,4 @@ end
 
 plotGP(xd,yd,thetaOpt,timePred,f_,f_Var,varInt)
 
+save('f_Record','predictionsCovSE')

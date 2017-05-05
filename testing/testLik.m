@@ -1,19 +1,56 @@
 % test gpLik
-clear variables;
+close all; clear variables;
 
-%{
+% Load and organise data
+X = csvread('sotonmetData.csv');
+time = X(:,1)/60; % Converts units of time from minutes to hours
+airTemp = X(:,3);
+tideH = X(:,4);
+
+% Specify variable of interest
+varInt = 'airTemp';
+% varInt = 'tideH'
+if strcmp(varInt,'airTemp')
+    y = airTemp;
+elseif strcmp(varInt,'tideH')
+    y = tideH;
+else
+    error('varInt must be airTemp or tideH')
+end
+
+[xd, yd] = clean(time, y);
+
+nLogLik = zeros(6,1);
+
 type = struct('Mean',{'meanConst'},'Cov',{'covSE'});
-theta = [-1,2,1,1];
-xd = [0,0;0,1;1,0;1,1];
-yd = [7;8.5;7.5;9.5];
-%}
-xd = 0:0.05:5;
-xd = xd';
-yd = 1.3*ones(size(xd))+0.8*cos(8*xd)+1.1*sin(4*xd)+0.7*sin(2*xd)-...
-    0.7*sin(xd)+cos(0.5*xd)+0.5*sin(0.25*xd)-4*exp(-0.3*xd) + normrnd(0,0.1,length(xd),1);
-type = struct('Mean',{'meanZero'},'Cov',{'covSE'});
-theta = [-3, -1.25,1]
-nLogLik = gpLik(type, theta, xd, yd);
+load('thetaOptCovSEAirTemp')
+nLogLik(1) = gpLik(type, thetaOpt, xd, yd);
+
+
+type = struct('Mean',{'meanConst'},'Cov',{'covRQ'});
+load('thetaOptCovRQAirTemp')
+nLogLik(2) = gpLik(type, thetaOpt, xd, yd);
+
+
+type = struct('Mean',{'meanConst'},'Cov',{'covMatern12'});
+load('thetaOptCovMatern12AirTemp')
+nLogLik(3) = gpLik(type, thetaOpt, xd, yd);
+
+
+type = struct('Mean',{'meanConst'},'Cov',{'covMatern32'});
+load('thetaOptCovMatern32AirTemp')
+nLogLik(4) = gpLik(type, thetaOpt, xd, yd);
+
+
+type = struct('Mean',{'meanConst'},'Cov',{'covMatern52'});
+load('thetaOptCovMatern52AirTemp')
+nLogLik(5) = gpLik(type, thetaOpt, xd, yd);
+
+
+type = struct('Mean',{'meanConst'},'Cov',{'covPer'});
+load('thetaOptCovPerAirTemp')
+nLogLik(6) = gpLik(type, thetaOpt, xd, yd);
+
 
 %{
 % check gpLik
