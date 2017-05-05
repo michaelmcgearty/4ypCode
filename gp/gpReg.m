@@ -30,8 +30,11 @@ Kd_ = K_d';
 Kdd = covWrap(type, hypCov, xd, xd);
 % Generate the noise matrix
 noise = exp(2*sigmaN) * eye(size(Kdd));
+% Ensure matrix is well conditioned
+K = Kdd + noise;
+K = jitter(K);
 % Calculate the inverse of Kdd + noise using Cholskey decomposition
-invKddPlusNoise = cholInv(Kdd + noise);
+invKddPlusNoise = cholInv(K);
 
 % Calculate the GP mean at the test points
 f_ = x_Mu + K_d * invKddPlusNoise * (yd - xdMu);

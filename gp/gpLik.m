@@ -20,11 +20,12 @@ Kdd = covWrap(type, hypCov, xd, xd);
 % Generate the noise matrix
 noise = exp(2*sigmaN) * eye(size(Kdd));
 % Add Kdd to the noise covariance
-KddPlusNoise = Kdd + noise;
+K = Kdd + noise;
+K = jitter(K);
 % Calculate the inverse of Kdd + noise using Cholskey decomposition
-invKddPlusNoise = cholInv(KddPlusNoise);
+invKddPlusNoise = cholInv(K);
 % The natural logaritm of the determinant of Kdd plus the noise matrix
-logDetKddPlusNoise = cholLogDet(Kdd + noise);
+logDetKddPlusNoise = cholLogDet(K);
 % Number of data ponts in training set
 N = numel(yd);
 % Compute the negative log likelihood for the training data 
