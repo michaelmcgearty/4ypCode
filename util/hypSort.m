@@ -14,40 +14,40 @@ function [hyp1, hyp2] = hypSort(type, hypCov, dim)
 %           parameters for the second covaraince function
 
 % Organise the hyper parameters
-if strcmp(type(2).Cov, 'covLin')
+if strcmp(type(2).Cov, 'Lin')
     hyp1 = hypCov(1:(dim(2)+1));
     hyp2 = hypCov((dim(2)+2):end);
-elseif strcmp(type(2).Cov, 'covMatern12')
+elseif strcmp(type(2).Cov, 'Matern12')
     hyp1 = hypCov(1:2);
     hyp2 = hypCov(3:end);
-elseif strcmp(type(2).Cov, 'covMatern12ard')
+elseif strcmp(type(2).Cov, 'Matern12ard')
     hyp1 = hypCov(1:(dim(2)+1));
     hyp2 = hypCov((dim(2)+2):end);
-elseif strcmp(type(2).Cov, 'covMatern32')
+elseif strcmp(type(2).Cov, 'Matern32')
     hyp1 = hypCov(1:2);
     hyp2 = hypCov(3:end);
-elseif strcmp(type(2).Cov, 'covMatern32ard')
+elseif strcmp(type(2).Cov, 'Matern32ard')
     hyp1 = hypCov(1:(dim(2)+1));
     hyp2 = hypCov((dim(2)+2):end);
-elseif strcmp(type(2).Cov, 'covMatern52')
+elseif strcmp(type(2).Cov, 'Matern52')
     hyp1 = hypCov(1:2);
     hyp2 = hypCov(3:end);
-elseif strcmp(type(2).Cov, 'covMatern52ard')
+elseif strcmp(type(2).Cov, 'Matern52ard')
     hyp1 = hypCov(1:(dim(2)+1));
     hyp2 = hypCov((dim(2)+2):end);
-elseif strcmp(type(2).Cov, 'covPer')
+elseif strcmp(type(2).Cov, 'Per')
     hyp1 = hypCov(1:3);
     hyp2 = hypCov(4:end);
-elseif strcmp(type(2).Cov, 'covRQ')
+elseif strcmp(type(2).Cov, 'RQ')
     hyp1 = hypCov(1:3);
     hyp2 = hypCov(3:end);
-elseif strcmp(type(2).Cov, 'covRQard')
+elseif strcmp(type(2).Cov, 'RQard')
     hyp1 = hypCov(1:(dim(2)+2));
     hyp2 = hypCov((dim(2)+3):end);
-elseif strcmp(type(2).Cov, 'covSE')
+elseif strcmp(type(2).Cov, 'SE')
     hyp1 = hypCov(1:2);
     hyp2 = hypCov(3:end);
-elseif strcmp(type(2).Cov, 'covSEard')
+elseif strcmp(type(2).Cov, 'SEard')
     hyp1 = hypCov(1:(dim(2)+1));
     hyp2 = hypCov((dim(2)+2):end);
 else

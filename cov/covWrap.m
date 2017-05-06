@@ -16,51 +16,51 @@ function K = covWrap(type, hypCov, x1, x2)
 % If single covariance function used, type will be a struct
 if isstruct(type)
     % Rational quadratic covariance
-    if strcmp(type(1).Cov, 'covRQ')
+    if strcmp(type(1).Cov, 'RQ')
         covRQ = str2func(type(1).Cov);
         K = covRQ(hypCov, x1, x2);
     % RQ covariance with ARD
-    elseif strcmp(type(1).Cov, 'covRQard')
+    elseif strcmp(type(1).Cov, 'RQard')
         covRQard = str2func(type(1).Cov);
         K = covRQard(hypCov, x1, x2);
     % Squared exponential covariance
-    elseif strcmp(type(1).Cov, 'covSE')
+    elseif strcmp(type(1).Cov, 'SE')
         covSE = str2func(type(1).Cov);
         K = covSE(hypCov, x1, x2);
     % SE covariance with ARD
-    elseif strcmp(type(1).Cov, 'covSEard')
+    elseif strcmp(type(1).Cov, 'SEard')
         covSEard = str2func(type(1).Cov);
         K = covSEard(hypCov, x1, x2);
     % Linear covariance
-    elseif strcmp(type(1).Cov, 'covLin')
+    elseif strcmp(type(1).Cov, 'Lin')
         covLin = str2func(type(1).Cov);
         K = covLin(hypCov, x1, x2);
     % Matern covariance (v = 1/2)
-    elseif strcmp(type(1).Cov, 'covMatern12')
+    elseif strcmp(type(1).Cov, 'Matern12')
         covMatern12 = str2func(type(1).Cov);
         K = covMatern12(hypCov, x1, x2);
     % Matern covariance with ARD (v = 1/2)
-    elseif strcmp(type(1).Cov, 'covMatern12ard')
+    elseif strcmp(type(1).Cov, 'Matern12ard')
         covMatern12ard = str2func(type(1).Cov);
         K = covMatern12ard(hypCov, x1, x2);
     % Matern covariance (v = 3/2)
-    elseif strcmp(type(1).Cov, 'covMatern32')
+    elseif strcmp(type(1).Cov, 'Matern32')
         covMatern32 = str2func(type(1).Cov);
         K = covMatern32(hypCov, x1, x2);
     % Matern covariance with ARD (v = 3/2)
-    elseif strcmp(type(1).Cov, 'covMatern32ard')
+    elseif strcmp(type(1).Cov, 'Matern32ard')
         covMatern32ard = str2func(type(1).Cov);
         K = covMatern32ard(hypCov, x1, x2);
     % Matern covariance (v = 5/2)
-    elseif strcmp(type(1).Cov, 'covMatern52')
+    elseif strcmp(type(1).Cov, 'Matern52')
         covMatern52 = str2func(type(1).Cov);
         K = covMatern52(hypCov, x1, x2);
     % Matern covariance with ARD (v = 5/2)
-    elseif strcmp(type(1).Cov, 'covMatern52ard')
+    elseif strcmp(type(1).Cov, 'Matern52ard')
         covMatern52ard = str2func(type(1).Cov);
         K = covMatern52ard(hypCov, x1, x2);
     % Periodic covariance
-    elseif strcmp(type(1).Cov, 'covPer')
+    elseif strcmp(type(1).Cov, 'Per')
         covPer = str2func(type(1).Cov);
         K = covPer(hypCov, x1, x2);
     % Sum of covariance functions 

@@ -1,5 +1,5 @@
-function Kxx = covMatern32(hypCov, x1, x2)
-% covMatern32: Calculates the Matern covariance matrix (v = 3/2)
+function Kxx = Matern12(hypCov, x1, x2)
+% Matern12: Calculates the Matern covariance matrix (v = 1/2)
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l
 %           and sigma, hypCov = ln([l, sigma])
@@ -22,7 +22,7 @@ Kxx = zeros(n1(1), n2(1));
 % Calculate the elements of Kxx
 for i = 1:n1(1)
     for j = 1:n2(1)
-        Kxx(i,j) = elementMatern32(x1(i,:), x2(j,:), l, sigma);
+        Kxx(i,j) = elementMatern12(x1(i,:), x2(j,:), l, sigma);
     end
 end
 end

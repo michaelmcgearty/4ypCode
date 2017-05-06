@@ -1,5 +1,5 @@
-function Kxx = covSEard(hypCov, x1, x2)
-% covSEard: Calculates the squared exponential covariance matrix with
+function Kxx = SEard(hypCov, x1, x2)
+% SEard: Calculates the squared exponential covariance matrix with
 %           automatic relevance detection
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l and

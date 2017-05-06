@@ -11,10 +11,10 @@ function nLogLik = gpLik(type, theta, xd, yd)
 % Output: - nLogLik - the the negative log likelihood of the GP
 
 % Assign hyper parameters from theta
-[sigmaN, hypMean, hypCov] = hypAssign(type, theta);
+[sigmaN, hypMean, hypCov] = hypAssign(theta);
 
 % Mean for training data
-xdMu = meanWrap(type, hypMean, yd);
+xdMu = Const(hypMean, yd);
 % Covariance matrix for training data
 Kdd = covWrap(type, hypCov, xd, xd);
 % Generate the noise matrix

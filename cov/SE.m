@@ -1,5 +1,5 @@
-function Kxx = covSE(hypCov, x1, x2)
-% covSE: Calculates the squared exponential covariance matrix
+function Kxx = SE(hypCov, x1, x2)
+% SE: Calculates the squared exponential covariance matrix
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l and
 %           sigma, hypCov = ln([l, sigma])

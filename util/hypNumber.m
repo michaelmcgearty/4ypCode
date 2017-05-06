@@ -7,16 +7,16 @@ function hypNum = hypNumber(type, D)
 %
 % Output: - hypNum - the number of hyper parameters required
 
-if strcmp(type,'covRQ') || strcmp(type,'covPer')
+if strcmp(type,'RQ') || strcmp(type,'Per')
     hypNum = 3;
-elseif strcmp(type,'covRQard')
+elseif strcmp(type,'RQard')
     hypNum = 2 + D;
-elseif strcmp(type,'covSE') || strcmp(type,'covMatern12') || ...
-         strcmp(type,'covMatern32') || strcmp(type,'covMatern52')
+elseif strcmp(type,'SE') || strcmp(type,'Matern12') || ...
+         strcmp(type,'Matern32') || strcmp(type,'Matern52')
     hypNum = 2;
-elseif strcmp(type,'covSEard') || strcmp(type,'covMatern12ard') || ...
-        strcmp(type,'covMatern32ard') || strcmp(type,'covMatern52ard') || ...
-        strcmp(type,'covLin')
+elseif strcmp(type,'SEard') || strcmp(type,'Matern12ard') || ...
+        strcmp(type,'Matern32ard') || strcmp(type,'Matern52ard') || ...
+        strcmp(type,'Lin')
     hypNum = 1 + D;
 else
     error('type must be a valid covariance')

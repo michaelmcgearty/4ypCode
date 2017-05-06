@@ -52,7 +52,7 @@ f_Record = zeros(testPoints,1);
 % hyper parameters, min value, max value, max iterations, func tol]
 type = struct('Cov',{'SE'});
 opt = [1, -4, 6, 4000, 0.03];
-theta = NaN;
+%theta = NaN;
 load('thetaOptCovSEAirTemp');
 
 % Simulate the data as a time series

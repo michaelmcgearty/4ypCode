@@ -1,5 +1,5 @@
-function Kxx = covPer(hypCov, x1, x2)
-% covPer: Calculates the covariance matrix for a periodic covariance
+function Kxx = Per(hypCov, x1, x2)
+% Per: Calculates the covariance matrix for a periodic covariance
 %         function
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l,

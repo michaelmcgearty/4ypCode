@@ -1,4 +1,4 @@
-function [X,XMC,XMC1,XMC2,XMC3,XMC4] = loadData
+function [X,XMC,XMC1,XMC2,XMC3,XMC4]
 % Load and organise data
 X = csvread('sotonmetData.csv');
 % Converts units of time from minutes to hours

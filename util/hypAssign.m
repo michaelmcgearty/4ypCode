@@ -1,4 +1,4 @@
-function [sigmaN, hypMean, hypCov] = hypAssign(type, theta)
+function [sigmaN, hypMean, hypCov] = hypAssign(theta)
 % hypAssign: Breaks theta up into sigmaN, hypMean and hypCov based on the
 %            types of mean and covariance functions being used
 % 
@@ -14,12 +14,7 @@ function [sigmaN, hypMean, hypCov] = hypAssign(type, theta)
 %           parameters for the covariance functions
 
 sigmaN = theta(1);
-if strcmp(type(1).Mean, 'meanConst')
-    hypMean = theta(2);
-    hypCov = theta(3:end);
-else
-    hypMean = 0;
-    hypCov = theta(2:end);
-end
+hypMean = theta(2);
+hypCov = theta(3:end);
 
 end

@@ -15,10 +15,10 @@ function [f_, f_Var] = gpReg(type, theta, xd, yd, x_)
 %            n * 1 vector
 
 % Assign hyper parameters from theta
-[sigmaN, hypMean, hypCov] = hypAssign(type, theta); 
+[sigmaN, hypMean, hypCov] = hypAssign(theta); 
 
 % Compute the mean function for the training data
-xdMu = meanWrap(type, hypMean, yd);
+xdMu = Const(hypMean, yd);
 % Compute the mean function at the test points
 dimx_ = size(x_);
 x_Mu = xdMu(1) * ones(dimx_(1),1);

@@ -1,5 +1,5 @@
-function Kxx = covMatern32ard(hypCov, x1, x2)
-% covMatern32ard: Calculates the Matern covariance matrix with automatic
+function Kxx = Matern32ard(hypCov, x1, x2)
+% Matern32ard: Calculates the Matern covariance matrix with automatic
 %                 relevance detection (v = 3/2)
 %
 % Inputs: - hypCov - the hyper paramters for the covariance function, l

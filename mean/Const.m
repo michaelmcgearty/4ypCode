@@ -1,5 +1,5 @@
-function mu = meanConst(hypMean, yd)
-% meanConst: Constant mean function
+function mu = Const(hypMean, yd)
+% Const: Constant mean function
 %
 % Inputs: - hypMean - the mean functions only hyper parameter (the constant)
 %         - yd - N training outputs corresponding to the N training inputs
